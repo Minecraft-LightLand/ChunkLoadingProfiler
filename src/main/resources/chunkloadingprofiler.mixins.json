@@ -4,6 +4,8 @@
 	"package": "dev.xkmc.chunkloadingprofiler.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
+		"ChunkStatusTaskMixin",
+		"ChunkGeneratorMixin"
 	],
 	"client": [
 	],

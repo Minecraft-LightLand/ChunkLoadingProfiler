@@ -156,17 +156,6 @@ repositories {
     mavenLocal();
 }
 
-if (lljij.toBoolean()) {
-
-    tasks.jarJar.configure {
-        archiveClassifier.set('')
-    }
-
-    jar {
-        archiveClassifier.set('slim')
-    }
-
-}
 
 dependencies {
 
