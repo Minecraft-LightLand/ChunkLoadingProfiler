@@ -1,22 +1,19 @@
 package dev.xkmc.chunkloadingprofiler.modules;
 
+import it.unimi.dsi.fastutil.objects.Object2LongLinkedOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2LongMap;
 import net.minecraft.world.level.ChunkPos;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.LinkedHashMap;
 
 public class ChunkProfiler {
 
 	private final ProfilingModule parent;
 
-	private long startTime;
-	private long stopTime;
-	private long subTask;
-
+	private long startTime, accumulated;
 	private @Nullable String itemName;
 	private long itemStartTime;
 
-	private LinkedHashMap<String, Long> map = new LinkedHashMap<>();
+	private final Object2LongMap<String> map = new Object2LongLinkedOpenHashMap<>();
 
 	public ChunkProfiler(ProfilingModule module) {
 		this.parent = module;
@@ -27,13 +24,16 @@ public class ChunkProfiler {
 	}
 
 	public void stop() {
-		stopTime = System.nanoTime();
-		parent.report(stopTime - startTime, map);
+		if (itemName != null) {
+			finishItem();
+		}
+		long stopTime = System.nanoTime();
+		parent.report(startTime > 0 ? stopTime - startTime : accumulated, map);
 	}
 
 	public void startItem(String s) {
 		if (itemName != null) {
-			throw new IllegalStateException("Instance " + itemName + " did not close properly");
+			finishItem();
 		}
 		itemName = s;
 		itemStartTime = System.nanoTime();
@@ -45,8 +45,8 @@ public class ChunkProfiler {
 		}
 		long stop = System.nanoTime();
 		long diff = stop - itemStartTime;
-		subTask += diff;
-		map.compute(itemName, (k, v) -> (v == null ? 0 : v) + diff);
+		accumulated += diff;
+		map.mergeLong(itemName, diff, Long::sum);
 		itemName = null;
 		itemStartTime = 0;
 	}

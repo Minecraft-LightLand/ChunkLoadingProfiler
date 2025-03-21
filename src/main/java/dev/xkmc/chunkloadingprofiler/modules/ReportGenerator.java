@@ -16,7 +16,7 @@ public class ReportGenerator {
 
 	public static String generate(ChunkModules modules) {
 		String time = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
-		String log = "logs/profiler/chunk-" + time;
+		String log = "logs/profiler/chunk-" + time + ".txt";
 		Path path = FMLPaths.GAMEDIR.get().resolve(log);
 		write(path, modules::write);
 		return log;

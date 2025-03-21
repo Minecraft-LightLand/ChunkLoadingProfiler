@@ -163,7 +163,6 @@ dependencies {
 
 }
 
-/*
 
 tasks.register('publishCurseForge', TaskPublishCurseForge) {
     apiToken = secrets.get("curseforge_token")
@@ -176,6 +175,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     disableVersionDetection()
 }
 
+/*
 modrinth {
     token = secrets.get("modrinth_token")
     projectId = project.modrinth_project
