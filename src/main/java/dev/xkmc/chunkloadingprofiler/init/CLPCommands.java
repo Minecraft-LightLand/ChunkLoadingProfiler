@@ -7,12 +7,12 @@ import dev.xkmc.chunkloadingprofiler.modules.ProfilerRunner;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber(modid = ChunkLoadingProfiler.MODID, bus = EventBusSubscriber.Bus.GAME)
+@Mod.EventBusSubscriber(modid = ChunkLoadingProfiler.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CLPCommands {
 
 	@SubscribeEvent
@@ -25,7 +25,8 @@ public class CLPCommands {
 	}
 
 	@SubscribeEvent
-	public static void onServerTick(ServerTickEvent.Post event) {
+	public static void onServerTick(TickEvent.ServerTickEvent event) {
+		if (event.phase == TickEvent.Phase.START) return;
 		ProfilerRunner.onServerTick();
 	}
 

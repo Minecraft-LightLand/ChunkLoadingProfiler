@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="LGPL 2.1"
+[[mods]]
+modId="chunkloadingprofiler"
+version="${file.jarVersion}" #mandatory
+displayName="Chunk Loading Profiler" #mandatory
+logoFile="logo.png" #optional
+credits="LightLand Team" #optional
+authors="lcy0x1" #optional
+description='''
+'''
+[[dependencies.chunkloadingprofiler]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47.1.0,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.chunkloadingprofiler]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20,1.21)"
+    ordering="NONE"
+    side="BOTH"

@@ -41,7 +41,7 @@ public class SurfaceSystemMixin {
 		var ans = original.call(instance, flag1);
 		var profiler = holder.get();
 		if (profiler == null) return ans;
-		profiler.startItem(ans.getRegisteredName());
+		profiler.startItem(ans.unwrapKey().orElseThrow().location().toString());
 		return ans;
 	}
 

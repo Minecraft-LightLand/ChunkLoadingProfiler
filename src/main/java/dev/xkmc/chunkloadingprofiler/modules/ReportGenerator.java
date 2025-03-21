@@ -1,7 +1,7 @@
 package dev.xkmc.chunkloadingprofiler.modules;
 
 import dev.xkmc.chunkloadingprofiler.init.ChunkLoadingProfiler;
-import net.neoforged.fml.loading.FMLPaths;
+import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.Level;
 
 import java.io.File;

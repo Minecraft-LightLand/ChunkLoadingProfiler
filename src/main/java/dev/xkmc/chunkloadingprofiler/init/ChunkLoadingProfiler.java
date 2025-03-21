@@ -1,6 +1,6 @@
 package dev.xkmc.chunkloadingprofiler.init;
 
-import net.neoforged.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

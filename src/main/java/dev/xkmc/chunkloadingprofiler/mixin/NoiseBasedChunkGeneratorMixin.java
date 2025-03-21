@@ -65,7 +65,7 @@ public class NoiseBasedChunkGeneratorMixin {
 		var profiler = holder.get();
 		if (profiler == null) return ans;
 		if (ans instanceof ConfiguredWorldCarver<?>)
-			profiler.startItem(instance.getRegisteredName());
+			profiler.startItem(instance.unwrapKey().orElseThrow().location().toString());
 		return ans;
 	}
 
