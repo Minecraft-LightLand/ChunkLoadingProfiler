@@ -26,9 +26,10 @@ public class SimpleModule extends ProfilingModule {
 	}
 
 	@Override
-	public void writeBrief(PrintStream ps) {
-		long total = totalTime / 1000000 / (totalCount / div);
-		ps.printf("%d %s, taking %d ms per chunk in average.\n", (totalCount / div), msg, total);
+	public void writeBrief(PrintStream ps, double total) {
+		int count = totalCount / div;
+		long average = totalTime / 1000000 / count;
+		ps.printf("%d %s, taking %d ms per chunk in average (%.1f%%).\n", count, msg, average, 100 * average / total);
 	}
 
 	@Override

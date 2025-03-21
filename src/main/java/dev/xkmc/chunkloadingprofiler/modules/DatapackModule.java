@@ -30,9 +30,9 @@ public class DatapackModule extends ProfilingModule {
 	}
 
 	@Override
-	public void writeBrief(PrintStream ps) {
-		long total = totalTime / 1000000 / totalCount;
-		ps.printf("%d %s, taking %d ms per chunk in average.\n", totalCount, msg, total);
+	public void writeBrief(PrintStream ps, double total) {
+		long average = totalTime / 1000000 / totalCount;
+		ps.printf("%d %s, taking %d ms per chunk in average (%.1f%%).\n", totalCount, msg, average, 100 * average / total);
 	}
 
 	@Override

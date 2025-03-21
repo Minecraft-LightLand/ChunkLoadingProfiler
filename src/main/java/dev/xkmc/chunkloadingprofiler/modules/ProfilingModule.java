@@ -25,7 +25,7 @@ public abstract class ProfilingModule {
 
 	public abstract void getModCost(Object2LongMap<String> collector);
 
-	public abstract void writeBrief(PrintStream ps);
+	public abstract void writeBrief(PrintStream ps, double total);
 
 	public abstract void write(PrintStream ps);
 

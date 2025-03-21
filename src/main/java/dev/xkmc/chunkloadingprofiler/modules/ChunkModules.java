@@ -46,7 +46,14 @@ public class ChunkModules {
 
 	public void write(PrintStream ps) {
 		List<ProfilingModule> modules = List.of(init, biome, noise, surface, carver, decoration, spawn, finalize);
-		for (var e : modules) e.writeBrief(ps);
+		double total = 0;
+		for (var e : modules) {
+			total += 1e-6 * e.totalTime / e.totalCount;
+		}
+		ps.printf("Chunk loading takes %d ms in average\n", (int) total);
+		for (var e : modules) {
+			e.writeBrief(ps, total);
+		}
 		ps.println("------------------------------");
 		writeMods(ps, modules);
 		for (var e : modules) e.write(ps);

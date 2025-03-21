@@ -27,9 +27,10 @@ public class DecorationModule extends ProfilingModule {
 		}
 	}
 
-	public void writeBrief(PrintStream ps) {
-		long total = totalTime / 1000000 / totalCount;
-		ps.printf("%d chunks decorated, taking %d ms per chunk in average.\n", totalCount, total);
+	@Override
+	public void writeBrief(PrintStream ps, double total) {
+		long average = totalTime / 1000000 / totalCount;
+		ps.printf("%d chunks decorated, taking %d ms per chunk in average (%.1f%%).\n", totalCount, average, 100 * average / total);
 	}
 
 	public void write(PrintStream ps) {
